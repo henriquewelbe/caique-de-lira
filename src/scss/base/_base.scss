@@ -1,0 +1,28 @@
+html {
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  font-size: 4.26666667vw;
+
+  @include breakpoint(md) {
+      font-size: 2.08333333vw;
+  }
+
+  @include breakpoint(lg) {
+      // font-size: 1.11111111vw;
+      @include vfit(font-size, 1.111111);
+  }
+
+  &.has-scroll-smooth {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+  }
+
+  &:not(.has-scroll-init) {
+      body {
+          overflow: hidden;
+      }
+  }
+}

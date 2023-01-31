@@ -1,0 +1,13 @@
+{
+  "root": true,
+  "extends": "standard",
+  "globals": {
+    "IS_DEVELOPMENT": "readonly"
+  },
+  "parserOptions": {
+    "ecmasVersion": 2020
+  },
+  "rules": {
+    "no-new": 0
+  }
+}

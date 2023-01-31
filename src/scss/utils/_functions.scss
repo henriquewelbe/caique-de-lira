@@ -1,0 +1,33 @@
+@use 'sass:math';
+
+@function rem($pixels){
+	@if math.is-unitless($pixels) {
+		@return	math.div($pixels, 16) + rem;
+	}
+	@else {
+		@error "Don't use units when using the rem() function; only numbers."
+	}
+};
+
+@function em($pixels){
+	@if math.is-unitless($pixels) {
+		@return	math.div($pixels, 16) + em;
+	}
+	@else {
+		@error "Don't use units when using the em() function; only numbers."
+	}
+};
+
+%absolute-cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+%flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

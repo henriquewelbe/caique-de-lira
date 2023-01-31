@@ -1,0 +1,18 @@
+@use 'functions' as *;
+
+$breakpoints: (
+  // 43.75rem, 56.25rem, 90rem
+	"md": em(700),
+	"lg": em(900),
+	"xl": em(1440),
+);
+
+@mixin breakpoint($size) {
+	@media (min-width: map-get($breakpoints, $size)) {
+		@content;
+	}
+};
+
+@mixin vfit($property, $value) {
+  #{$property}: calc(min(#{$value}vw, calc(#{$value}vh * 2)));
+}
