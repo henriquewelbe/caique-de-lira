@@ -4,9 +4,11 @@ import EventEmitter from 'events'
 export default class Component extends EventEmitter {
   constructor ({ element, elements }) {
     super()
-    this.selector = element
-    this.selectorChildren = {
-      ...elements
+    this.selectors = {
+      element,
+      elements: {
+        ...elements
+      }
     }
 
     this.create()
@@ -14,10 +16,15 @@ export default class Component extends EventEmitter {
   }
 
   create () {
-    this.element = document.querySelector(this.selector)
+    if (this.selectors.element instanceof window.HTMLElement) {
+      this.element = this.selectors.element
+    } else {
+      this.element = document.querySelector(this.selectors.element)
+    }
+
     this.elements = {}
 
-    each(this.selectorChildren, (selector, key) => {
+    each(this.selectors.elements, (selector, key) => {
       if (selector instanceof window.HTMLElement || selector instanceof window.NodeList || Array.isArray(selector)) {
         this.elements[key] = selector
       } else {

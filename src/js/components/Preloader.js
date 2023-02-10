@@ -1,6 +1,6 @@
 import Component from '../classes/Component'
 
-import gsap from 'gsap'
+import { gsap, Sine } from 'gsap'
 
 import each from 'lodash/each'
 
@@ -9,8 +9,7 @@ export default class Preloader extends Component {
     super({
       element: '.preloader',
       elements: {
-        text: '.preloader__text',
-        number: '.preloader__number',
+        background: document.querySelectorAll('.preloader__ball img'),
         images: document.querySelectorAll('img')
       }
     })
@@ -40,7 +39,6 @@ export default class Preloader extends Component {
   animatePercentages () {
     if (this.currentPercent < 100) {
       this.currentPercent++
-      this.elements.number.innerHTML = this.currentPercent + '%'
 
       if (this.currentPercent <= this.realPercent) {
         window.requestAnimationFrame(() => this.animatePercentages())
@@ -53,9 +51,13 @@ export default class Preloader extends Component {
   completeAll () {
     return new Promise(() => {
       gsap.timeline({
-        delay: 1,
-        onComplete: () => this.emit('completed')
-      }).to(this.element, { autoAlpha: 0 })
+        onStart: () => this.emit('completed'),
+        onComplete: this.elements.background.forEach(background => { background.style.animation = 'rotateBall 24s linear infinite, scaleBall 10s linear infinite' })
+      })
+        .to(
+          this.elements.background,
+          { width: '31.25rem', duration: 3, ease: Sine.easeOut }
+        )
     })
   }
 

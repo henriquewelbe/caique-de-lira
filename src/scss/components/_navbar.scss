@@ -1,0 +1,143 @@
+@use '../base/colors' as *;
+@use '../utils/functions' as *;
+
+.navbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  padding-inline: rem(64);
+  width: 100%;
+  height: rem(128);
+  font-size: rem(12);
+  color: $navbar-color;
+
+  &__logo {
+    width: rem(52);
+    height: auto;
+    color: $navbar-color;
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &__color_options {
+    margin-left: rem(192);
+    width: 8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    span.point {
+      margin-inline: rem(4);
+    }
+
+    &__option {
+
+      &__text {
+        color: inherit;
+        text-transform: uppercase;
+        opacity: 0.5;
+
+        &.active {
+          color: $navbar-color;
+          opacity: 1;
+          font-weight: 700;
+        }
+      }
+    }
+  }
+
+  & &__links {
+    margin-left: rem(320);
+    display: flex;
+    gap: rem(192);
+    text-transform: lowercase;
+
+    &__link {
+      width: rem(64);
+      color: $navbar-color;
+    }
+  }
+
+  &__menu_toggler {
+    margin-left: rem(320);
+    color: $navbar-color;
+    position: relative;
+    text-transform: lowercase;
+
+    &::before {
+     content: '+';
+      position: absolute;
+      top: 0;
+      right: 0;
+      transform: translate(100%, -50%);
+    }
+  }
+}
+
+.toggle__icon {
+  position: absolute;
+}
+
+.navbar--open {
+  @extend %absolute-cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: rem(64);
+
+  .navbar__links {
+    display: flex;
+    flex-direction: column;
+    font-size: rem(108);
+    text-transform: lowercase;
+  }
+
+  .navbar__articles {
+    font-size: rem(108);
+    text-transform: lowercase;
+    rotate: -15deg;
+
+    &__background {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      right: rem(128);
+      height: rem(512);
+      width: rem(768);
+
+      @extend %flex-center;
+    }
+  }
+
+  .navbar__small_links {
+    display: flex;
+    justify-content: space-between;
+
+    &__personal {
+      &__link {
+        &:not(:last-child) {
+          margin-bottom: rem(16);
+        }
+
+        a {
+          color: $light-gray;
+        }
+      }
+    }
+
+    &__social {
+      display: flex;
+      align-items: flex-end;
+      gap: rem(12);
+
+      color: $gray;
+      text-transform: lowercase;
+    }
+  }
+}

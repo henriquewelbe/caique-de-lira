@@ -1,0 +1,30 @@
+:root {
+  --black: #000000;
+  --white: #ffffff;
+  --gray: #bcbcbc;
+  --dark-gray: #959595;
+  --light-gray: #dcdcdc;
+  --background: var(--black);
+  --text-color: var(--white);
+  --navbar-color: #dcdcdc;
+}
+
+.lightmode {
+  --black: #000000;
+  --white: #ffffff;
+  --gray: #434343;
+  --dark-gray: #434343;
+  --light-gray: #434343;
+  --background: #eeeeee;
+  --text-color: #0a0a0a;
+  --navbar-color: #434343;
+}
+
+$black: var(--black);
+$white: var(--white);
+$gray: var(--gray);
+$dark-gray: var(--dark-gray);
+$light-gray: var(--light-gray);
+$background: var(--background);
+$text-color: var(--text-color);
+$navbar-color: var(--navbar-color);

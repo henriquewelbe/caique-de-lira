@@ -1,0 +1,64 @@
+@use '../base/colors' as *;
+@use '../base/fonts' as *;
+
+@use '../utils/functions' as *;
+
+.homepage {
+  height: calc(var(--vh) * 100);
+  overflow: hidden;
+  position: relative;
+  isolation: isolate;
+
+  opacity: 0;
+  visibility: hidden;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: rem(64);
+}
+
+.homepage__title {
+  max-width: rem(704);
+  height: rem(256);
+
+  position: absolute;
+  top: 50%;
+  right: 4rem;
+  transform: translateY(-50%);
+
+  font-family: $general-sans;
+  font-weight: 500;
+}
+
+.homepage__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+
+  color: $light-gray;
+  opacity: 0.7;
+
+  margin-top: auto;
+}
+
+.homepage__footer__partner {
+  max-width: rem(52);
+
+  font-size: rem(10);
+  font-weight: 700;
+  line-height: 2;
+  text-transform: uppercase;
+}
+
+.homepage__footer__socials {
+  font-size: 500;
+}
+
+.homepage__footer__socials__social {
+  text-transform: lowercase;
+
+  &:not(:last-child) {
+    margin-bottom: rem(5);
+  }
+}

@@ -7,6 +7,9 @@ import About from './pages/About'
 
 import Preloader from './components/Preloader'
 import Scroll from './components/Scroll'
+import Navbar from './components/Navbar'
+
+import viewport from './utils/viewport'
 
 class App {
   constructor () {
@@ -15,6 +18,8 @@ class App {
     this.addLinkListeners()
     this.createPreloader()
     this.createScroll()
+    this.calculateViewportHeight()
+    this.createNavbar()
   }
 
   createContent () {
@@ -31,18 +36,21 @@ class App {
     this.page = this.pages[this.template]
 
     this.page.create()
-    this.page.show()
   }
 
   createPreloader () {
     this.preloader = new Preloader()
     this.preloader.once('completed', () => {
-      this.preloader.destroy()
+      this.page.show()
     })
   }
 
   createScroll () {
     this.scroll = new Scroll()
+  }
+
+  createNavbar () {
+    this.navbar = new Navbar()
   }
 
   async onChange (url) {
@@ -51,6 +59,7 @@ class App {
 
     if (request.status === 200) {
       const nextPageHtml = await request.text()
+
       const fakeDiv = document.createElement('div')
       fakeDiv.innerHTML = nextPageHtml
 
@@ -60,10 +69,16 @@ class App {
       this.content.setAttribute('data-template', this.template)
       this.content.innerHTML = content.innerHTML
 
+      // mudar o pathname sem recarregar a página
+      // window.location.pathname = this.template !== 'homepage' ? this.template + '/' : ''
+
       this.page = this.pages[this.template]
 
       this.page.create()
       this.page.show()
+
+      this.navbar.setTheme()
+
       this.addLinkListeners()
     }
   }
@@ -72,15 +87,23 @@ class App {
     const links = document.querySelectorAll('a')
 
     each(links, link => {
-      link.parentElement.parentElement.classList.add('teste')
       link.onclick = event => {
         event.preventDefault()
 
-        const href = event.target.href
+        const { href } = event.target
+
         this.onChange(href)
       }
     })
   }
+
+  calculateViewportHeight () {
+    document.documentElement.style.setProperty('--vh', viewport.height / 100 + 'px')
+
+    window.addEventListener('resize', () => {
+      document.documentElement.style.setProperty('--vh', viewport.height / 100 + 'px')
+    })
+  }
 }
 
-new App()
+window.app = new App()

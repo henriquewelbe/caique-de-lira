@@ -1,1 +1,62 @@
 @use '../utils/functions' as *;
+
+@keyframes rotateBall {
+  0% {
+    transform: rotate3d(0, 0, 0, 0deg);
+  }
+
+  100% {
+    transform: rotate3d(-3, 3, 30, 360deg);
+  }
+}
+
+@keyframes scaleBall {
+  0% {
+    scale: 1;
+  }
+
+  50% {
+    scale: 0.9;
+  }
+
+  100% {
+    scale: 1;
+  }
+}
+
+.preloader {
+  overflow: hidden;
+  z-index: -1;
+  mix-blend-mode: normal;
+  @extend %absolute-cover;
+  @extend %flex-center;
+
+  .preloader__ball {
+    z-index: -1;
+    pointer-events: none;
+    position: absolute;
+
+    img {
+      width: rem(1652);
+      height: auto;
+
+      &.lightmode {
+        display: none;
+      }
+    }
+  }
+}
+
+html.lightmode {
+  .preloader {
+    mix-blend-mode: hard-light;
+  }
+
+  .preloader__ball img:not(.lightmode) {
+    display: none;
+  }
+
+  .preloader__ball img.lightmode {
+    display: block;
+  }
+}

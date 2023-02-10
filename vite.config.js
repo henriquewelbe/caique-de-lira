@@ -14,6 +14,7 @@ export default () => {
   return defineConfig({
     root: './views/pages',
     publicDir: '../../public',
+    appType: 'mpa',
 
     server: {
       port: 3000,
@@ -50,8 +51,6 @@ export default () => {
           return pageData[pagePath]
         }
       })
-    ],
-
-    appType: 'mpa'
+    ]
   })
 }

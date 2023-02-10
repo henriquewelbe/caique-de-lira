@@ -1,20 +1,28 @@
 import each from 'lodash/each'
 import gsap from 'gsap'
+import Link from '../components/Link'
+import Title from '../animations/Title'
+import { mapEach } from '../utils/dom'
 
 export default class Page {
   constructor ({ id, element, elements }) {
     this.id = id
-    this.selector = element
-    this.selectorChildren = {
-      ...elements
+    this.selectors = {
+      element,
+      elements: {
+        ...elements
+
+        // animationsTitles: document.querySelectorAll('main [data-animation="title"]'),
+        // animationLinks: document.querySelectorAll('main [data-animation="link"]')
+      }
     }
   }
 
   create () {
-    this.element = document.querySelector(this.selector)
+    this.element = document.querySelector(this.selectors.element)
     this.elements = {}
 
-    each(this.selectorChildren, (selector, key) => {
+    each(this.selectors.elements, (selector, key) => {
       if (selector instanceof window.HTMLElement || selector instanceof window.NodeList || Array.isArray(selector)) {
         this.elements[key] = selector
       } else {
@@ -27,17 +35,35 @@ export default class Page {
         }
       }
     })
+
+    gsap.set(this.element, { autoAlpha: 0 })
+
+    this.createAnimations()
+  }
+
+  createAnimations () {
+    this.selectors.elements.animationsTitles = document.querySelectorAll('main [data-animation="title"]')
+    this.animationsTitles = mapEach(this.selectors.elements.animationsTitles, element => {
+      return new Title({
+        element
+      })
+    })
+
+    this.selectors.elements.animationLinks = document.querySelectorAll('main [data-animation="link"]')
+    this.animationLinks = mapEach(this.selectors.elements.animationLinks, element => {
+      return new Link({
+        element
+      })
+    })
   }
 
   show () {
     return new Promise(resolve => {
-      gsap.fromTo(
-        this.selector,
-        {
-          autoAlpha: 0
-        },
+      gsap.to(this.element,
         {
           autoAlpha: 1,
+          duration: 1,
+          delay: 0.5,
           onComplete: resolve
         }
       )
@@ -46,7 +72,7 @@ export default class Page {
 
   hide () {
     return new Promise(resolve => {
-      gsap.to(this.selector, {
+      gsap.to(this.element, {
         autoAlpha: 0,
         onComplete: resolve
       })

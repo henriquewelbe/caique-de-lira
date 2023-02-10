@@ -1,28 +1,62 @@
+@use './colors'as *;
+@use './fonts'as *;
+
+@use '../utils/functions'as *;
+@use '../utils/breakpoints'as *;
+@use '../utils/functions'as *;
+
+:root {
+  --vh: 0px;
+}
+
 html {
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
-  font-size: 4.26666667vw;
+  font-size: 4.2666666667vw;
 
   @include breakpoint(md) {
-      font-size: 2.08333333vw;
+    @include vfit(font-size, 1.04166666667);
+  }
+}
+
+body {
+  background-color: $background;
+  color: $text-color;
+  font-family: $neue-montreal;
+  font-weight: 500;
+
+  transition: background-color .5s ease, color .2s ease;
+}
+
+h1 {
+  font-size: rem(42);
+  line-height: 1.44;
+}
+
+[data-animation="title"] {
+  span {
+    display: inline-block;
+    overflow: hidden;
+    height: 1.782em;
+    display: inline-flex;
+    align-items: flex-end;
+  }
+}
+
+[data-animation="link"] {
+  display: inline-block;
+  position: relative;
+  white-space: nowrap;
+  overflow: hidden;
+
+  >div {
+    pointer-events: none;
   }
 
-  @include breakpoint(lg) {
-      // font-size: 1.11111111vw;
-      @include vfit(font-size, 1.111111);
-  }
-
-  &.has-scroll-smooth {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-  }
-
-  &:not(.has-scroll-init) {
-      body {
-          overflow: hidden;
-      }
+  span {
+    display: inline-block;
+    transform-origin: center center 0.5em;
+    vertical-align: middle;
+    pointer-events: none;
   }
 }
