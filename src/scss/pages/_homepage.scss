@@ -25,7 +25,6 @@
   position: absolute;
   top: 50%;
   right: 4rem;
-  transform: translateY(-50%);
 
   font-family: $general-sans;
   font-weight: 500;
@@ -52,7 +51,11 @@
 }
 
 .homepage__footer__socials {
-  font-size: 500;
+  font-weight: 500;
+
+  br {
+    content: '';
+  }
 }
 
 .homepage__footer__socials__social {

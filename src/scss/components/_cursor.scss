@@ -1,0 +1,21 @@
+@use '../utils/functions' as *;
+@use '../base/colors' as *;
+
+#cursor {
+  width: rem(16);
+  aspect-ratio: 1;
+  background-color: $white;
+  border-radius: 50%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  pointer-events: none;
+  mix-blend-mode: difference;
+  transition: width .2s ease-out;
+
+  &.cursor--hover_link {
+    width: rem(32);
+  }
+}
+

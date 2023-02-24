@@ -1,7 +1,5 @@
 import Component from '../classes/Component'
 
-import { gsap, Sine } from 'gsap'
-
 import each from 'lodash/each'
 
 export default class Preloader extends Component {
@@ -16,6 +14,7 @@ export default class Preloader extends Component {
     this.length = 0
     this.currentPercent = 0
     this.realPercent = 0
+
     this.createLoader()
   }
 
@@ -49,16 +48,7 @@ export default class Preloader extends Component {
   }
 
   completeAll () {
-    return new Promise(() => {
-      gsap.timeline({
-        onStart: () => this.emit('completed'),
-        onComplete: this.elements.background.forEach(background => { background.style.animation = 'rotateBall 24s linear infinite, scaleBall 10s linear infinite' })
-      })
-        .to(
-          this.elements.background,
-          { width: '31.25rem', duration: 3, ease: Sine.easeOut }
-        )
-    })
+    this.emit('completed')
   }
 
   destroy () {

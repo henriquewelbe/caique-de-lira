@@ -6,13 +6,17 @@
   top: 0;
   left: 0;
   z-index: 10;
-  display: flex;
-  align-items: center;
   padding-inline: rem(64);
   width: 100%;
   height: rem(128);
   font-size: rem(12);
   color: $navbar-color;
+
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
 
   &__logo {
     width: rem(52);
@@ -22,6 +26,7 @@
     svg {
       width: 100%;
       height: 100%;
+      pointer-events: none;
     }
   }
 
@@ -53,7 +58,7 @@
   }
 
   & &__links {
-    margin-left: rem(320);
+    margin-left: auto;
     display: flex;
     gap: rem(192);
     text-transform: lowercase;
@@ -65,7 +70,7 @@
   }
 
   &__menu_toggler {
-    margin-left: rem(320);
+    margin-left: auto;
     color: $navbar-color;
     position: relative;
     text-transform: lowercase;
@@ -78,11 +83,51 @@
       transform: translate(100%, -50%);
     }
   }
+
+  .toggle__icon {
+    position: absolute;
+    top: 50%;
+    translate: 150% -80%;
+    right: 4rem;
+    cursor: pointer;
+    transition: rotate .4s ease-out, translate .4s ease-out;
+
+    span {
+      display: block;
+      background-color: $navbar-color;
+      transition: width .4s ease-out, height .4s ease-out, translate .4s ease-out;
+
+      &:nth-child(1) {
+        width: 6px;
+        height: 2px;
+      }
+
+      &:nth-child(2) {
+        width: 2px;
+        height: 6px;
+        translate: 100% -70%;
+      }
+    }
+
+    &.open{
+      rotate: -45deg;
+      translate: 100% -50%;
+
+      span {
+        &:nth-child(1) {
+          width: 12px;
+          translate: -25% -25%;
+        }
+
+        &:nth-child(2) {
+          height: 12px;
+          translate: 100% -65%;
+        }
+      }
+    }
+  }
 }
 
-.toggle__icon {
-  position: absolute;
-}
 
 .navbar--open {
   @extend %absolute-cover;
@@ -101,15 +146,17 @@
   .navbar__articles {
     font-size: rem(108);
     text-transform: lowercase;
-    rotate: -15deg;
+    rotate: 5deg;
+    transform-origin: center;
 
-    &__background {
+    &__background svg{
+      rotate: -15deg;
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
       right: rem(128);
-      height: rem(512);
-      width: rem(768);
+      width: rem(760);
+      height: auto;
 
       @extend %flex-center;
     }

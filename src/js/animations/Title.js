@@ -3,8 +3,10 @@ import gsap from 'gsap'
 import { split } from '../utils/text'
 
 export default class Title extends Animations {
-  constructor ({ element }) {
+  constructor ({ element, centered = false }) {
     super({ element, elements: {} })
+
+    this.centered = centered
 
     this.text = []
 
@@ -30,7 +32,7 @@ export default class Title extends Animations {
       .fromTo(this.text, {
         y: '100%',
         autoAlpha: 0
-      // rotateX: 500
+        // rotateX: 500
       }, {
         y: '0%',
         autoAlpha: 1,
@@ -39,11 +41,9 @@ export default class Title extends Animations {
         stagger: 0.1
       })
       .fromTo(this.elements.spansWrapper, {
-      // y: '150%',
         height: '3em',
         autoAlpha: 0
       }, {
-        // y: '0%',
         height: this.elements.spansWrapper[0].querySelector('span').scrollHeight,
         autoAlpha: 1,
         stagger: 0.2,
@@ -56,9 +56,12 @@ export default class Title extends Animations {
         duration: 0.5
       }, '<')
       .fromTo(this.element, {
-        y: '70%'
+        y: '70%',
+        width: '100%',
+        scaleX: 0.7
       }, {
-        y: '0%',
+        scaleX: 1,
+        y: this.centered ? '-50%' : '0%',
         duration: 1,
         delay: 0.1
       }, '<')

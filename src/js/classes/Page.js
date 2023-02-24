@@ -10,8 +10,10 @@ export default class Page {
     this.selectors = {
       element,
       elements: {
-        ...elements
+        ...elements,
 
+        ball: '.preloader__ball img',
+        ballWrapper: '.preloader__ball'
         // animationsTitles: document.querySelectorAll('main [data-animation="title"]'),
         // animationLinks: document.querySelectorAll('main [data-animation="link"]')
       }
@@ -45,7 +47,8 @@ export default class Page {
     this.selectors.elements.animationsTitles = document.querySelectorAll('main [data-animation="title"]')
     this.animationsTitles = mapEach(this.selectors.elements.animationsTitles, element => {
       return new Title({
-        element
+        element,
+        centered: element.hasAttribute('data-centered')
       })
     })
 
@@ -59,6 +62,9 @@ export default class Page {
 
   show () {
     return new Promise(resolve => {
+      gsap.killTweensOf(this.elements.ball)
+      gsap.killTweensOf(this.elements.ballWrapper)
+
       gsap.to(this.element,
         {
           autoAlpha: 1,

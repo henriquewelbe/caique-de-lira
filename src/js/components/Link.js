@@ -51,7 +51,7 @@ export default class Link extends Component {
 
     this.timeline.to(this.elements.textSpans, {
       duration: 0.3,
-      y: '-100%',
+      y: '-110%',
       stagger: 0.02
     }, 0)
 
@@ -59,7 +59,7 @@ export default class Link extends Component {
       y: '100%'
     }, {
       duration: 0.3,
-      y: '0%',
+      y: '-10%',
       stagger: 0.02
     }, 0.05)
 
