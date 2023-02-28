@@ -9,7 +9,7 @@ export default class Homepage extends Page {
     })
   }
 
-  show () {
+  async show () {
     super.show()
 
     gsap.to(
