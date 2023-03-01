@@ -3,7 +3,7 @@ import path from 'path'
 import { defineConfig } from 'vite'
 import { ifCond } from './src/handlebars/helpers'
 import { fileURLToPath, URL } from 'url'
-import getPageData from './rollup.config.js'
+import getPagesData from './rollup.config.js'
 
 export default () => {
   return defineConfig({
@@ -29,7 +29,7 @@ export default () => {
     },
 
     rollupInputOptions: {
-      input: getPageData().then(data => data.input)
+      input: getPagesData().then(data => data.input)
     },
 
     plugins: [
@@ -42,7 +42,7 @@ export default () => {
 
         // implementar DynamicRouter
         context (pagePath) {
-          return getPageData().then(data => data.input[pagePath])
+          return getPagesData().then(data => data.input[pagePath])
         }
       })
     ]
