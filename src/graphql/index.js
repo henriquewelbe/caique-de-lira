@@ -12,7 +12,7 @@ query Homepage {
 }
 `
 
-const cms = new GraphQLClient('http://caique-de-lira.local/graphql')
+const cms = new GraphQLClient('https://caique-de-lira.000webhostapp.com/graphql')
 
 async function getHomepage () {
   return cms.request(homepageQuery).then(homepage => homepage.pages.nodes[0].homepage)
