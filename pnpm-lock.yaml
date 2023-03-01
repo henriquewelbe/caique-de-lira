@@ -11,7 +11,7 @@ specifiers:
   events: ^3.3.0
   graphql: ^16.6.0
   graphql-request: ^5.1.0
-  gsap: ^3.11.4
+  gsap: npm:@gsap/shockingly@^3.11.4
   handlebars: ^4.7.7
   lodash: ^4.17.21
   sass: ^1.57.1
@@ -33,7 +33,7 @@ devDependencies:
   eslint-plugin-import: 2.27.5_eslint@8.32.0
   eslint-plugin-n: 15.6.1_eslint@8.32.0
   eslint-plugin-promise: 6.1.1_eslint@8.32.0
-  gsap: 3.11.4
+  gsap: /@gsap/shockingly/3.11.4
   handlebars: 4.7.7
   lodash: 4.17.21
   sass: 1.57.1
@@ -272,6 +272,10 @@ packages:
     dependencies:
       graphql: 16.6.0
     dev: false
+
+  /@gsap/shockingly/3.11.4:
+    resolution: {integrity: sha512-Ai0XoH5bXAok7sDzXx+rRMK7qXZJdRaZX85JEcdKsdrGVJLT5hMPzOkVC7cqG2vtn5VW8FieBL007m76ZwUYZg==}
+    dev: true
 
   /@humanwhocodes/config-array/0.11.8:
     resolution: {integrity: sha512-UybHIJzJnR5Qc/MsD9Kr+RpO2h+/P1GhOwdiLPXK5TWk5sgTdu88bTD9UP+CKbPPh5Rni1u0GjAdYQLemG8g+g==}
@@ -1340,10 +1344,6 @@ packages:
     resolution: {integrity: sha512-KPIBPDlW7NxrbT/eh4qPXz5FiFdL5UbaA0XUNz2Rp3Z3hqBSkbj0GVjwFDztsWVauZUWsbKHgMg++sk8UX0bkw==}
     engines: {node: ^12.22.0 || ^14.16.0 || ^16.0.0 || >=17.0.0}
     dev: false
-
-  /gsap/3.11.4:
-    resolution: {integrity: sha512-McHhEguHyExMMnjqKA8G+7TvxmlKQGMbjgwAilnFe1e4id7V/tFveRQ2YMZhTYu0oxHGWvbPltdVYQOu3z1SCA==}
-    dev: true
 
   /handlebars/4.7.7:
     resolution: {integrity: sha512-aAcXm5OAfE/8IXkcZvCepKU3VzW1/39Fb5ZuqMtgI/hT8X2YgoMvBY5dLhq/cpOvw7Lk1nK/UF71aLG/ZnVYRA==}
