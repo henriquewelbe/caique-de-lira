@@ -25,7 +25,6 @@
 }
 
 .preloader {
-  overflow: hidden;
   z-index: -1;
   mix-blend-mode: normal;
   @extend %absolute-cover;

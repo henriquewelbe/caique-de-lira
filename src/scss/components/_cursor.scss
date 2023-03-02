@@ -11,7 +11,7 @@
   left: 0;
   z-index: 999;
   pointer-events: none;
-  mix-blend-mode: difference;
+  // mix-blend-mode: difference;
   transition: width .2s ease-out;
 
   &.cursor--hover_link {

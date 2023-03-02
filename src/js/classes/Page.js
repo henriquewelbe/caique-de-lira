@@ -41,6 +41,10 @@ export default class Page {
     gsap.set(this.element, { autoAlpha: 0 })
 
     this.createAnimations()
+
+    window.navbar.on('closed', () => {
+      this.closeNavbar()
+    })
   }
 
   createAnimations () {
@@ -83,5 +87,10 @@ export default class Page {
         onComplete: resolve
       })
     })
+  }
+
+  closeNavbar () {
+    gsap.killTweensOf(this.elements.ball)
+    gsap.killTweensOf(this.elements.ballWrapper)
   }
 }

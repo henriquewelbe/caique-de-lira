@@ -149,14 +149,16 @@
     rotate: 5deg;
     transform-origin: center;
 
-    &__background svg{
+    &__background{
       rotate: -15deg;
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
       right: rem(128);
       width: rem(760);
-      height: auto;
+      height: rem(488);
+      background-color: $white;
+      clip-path: url(#unhovered-nav);
 
       @extend %flex-center;
     }

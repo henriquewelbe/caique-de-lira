@@ -24,6 +24,31 @@ export default class Homepage extends Page {
         bottom: '50%',
         y: '35%',
         duration: 3
+      })
+    gsap.to(
+      this.elements.ballWrapper, {
+        y: '50%',
+        delay: 1,
+        duration: 2.5
+      }
+    )
+  }
+
+  closeNavbar () {
+    super.closeNavbar()
+
+    gsap.to(
+      this.elements.ball, {
+        width: '31.25rem',
+        duration: 3,
+        ease: Sine.easeOut
+      })
+
+    gsap.to(
+      this.elements.ballWrapper, {
+        bottom: '50%',
+        y: '35%',
+        duration: 3
       }
     )
 
