@@ -6,7 +6,7 @@
   "scripts": {
     "create-cms": "cd .. && npx create-strapi-app@latest cms --quickstart",
     "dev": "vite",
-    "build": "pnpm vite build --emptyOutDir --base=/caique-de-lira && touch dist/.nojekyll",
+    "build": "pnpm vite build --emptyOutDir --base=/ && touch dist/.nojekyll",
     "preview": "vite preview"
   },
   "devDependencies": {
